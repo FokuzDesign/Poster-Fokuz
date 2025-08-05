@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Pósteres - Fokuz Design</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/konva@9.3.6/konva.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="fixed top-0 left-0 w-full bg-white shadow-md p-4 z-50 flex items-center">
+<img src="assets/logo.png" alt="Fokuz Design Logo">
+style="height: 40px; margin-left: 10px;">
+    </nav>
+
+    <div class="container mx-auto mt-20 p-4 lg:p-8">
+        <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Crea tu póster personalizado</h1>
+        <p class="text-center text-gray-600 mb-8">Llena el formulario y deja que la IA diseñe un póster único para ti.</p>
+
+        <div class="bg-white p-6 md:p-10 rounded-xl shadow-lg max-w-2xl mx-auto">
+            <form id="poster-form" class="space-y-6">
+                <div>
+                    <label for="estilo" class="block text-gray-700 font-semibold mb-2">Estilo de póster <span class="text-red-500">*</span></label>
+                    <select id="estilo" name="estilo" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
+                        <option value="">Selecciona un estilo</option>
+                        <option value="Moderno">Moderno</option>
+                        <option value="Futurista">Futurista</option>
+                        <option value="Minimalista">Minimalista</option>
+                        <option value="Vintage">Vintage</option>
+                        <option value="Colorido">Colorido</option>
+                        <option value="Elegante">Elegante</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="colores" class="block text-gray-700 font-semibold mb-2">Colores de la marca</label>
+                    <input type="text" id="colores" name="colores" placeholder="Ej: #1a73e8, blanco, gris" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+
+                <div>
+                    <label for="producto" class="block text-gray-700 font-semibold mb-2">¿Qué vendes o promocionas? <span class="text-red-500">*</span></label>
+                    <input type="text" id="producto" name="producto" required placeholder="Ej: Servicios de diseño web" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+
+                <div>
+                    <label for="detalles" class="block text-gray-700 font-semibold mb-2">¿Algún detalle importante que quieras agregar?</label>
+                    <textarea id="detalles" name="detalles" rows="4" placeholder="Ej: Incluir un cohete en el diseño" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500"></textarea>
+                </div>
+
+                <div>
+                    <label for="logo_usuario" class="block text-gray-700 font-semibold mb-2">Sube tu logo (opcional)</label>
+                    <input type="file" id="logo_usuario" name="logo_usuario" accept="image/*" class="w-full p-3 border border-gray-300 rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+
+                <div>
+                    <label for="contacto" class="block text-gray-700 font-semibold mb-2">Datos de contacto (Ej. WhatsApp, Instagram, etc.)</label>
+                    <input type="text" id="contacto" name="contacto" placeholder="Ej: @fokuz_design, +52 55 1234 5678" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+                
+                <button type="submit" id="submit-btn" class="w-full bg-sky-600 text-white font-bold py-3 rounded-md hover:bg-sky-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2">
+                    Crear mi póster
+                </button>
+            </form>
+        </div>
+
+        <div id="result-area" class="mt-12 hidden">
+            <div id="loading-message" class="text-center text-lg text-gray-700">
+                <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12 mb-4 mx-auto"></div>
+                <p>Generando póster...</p>
+            </div>
+            
+            <div id="poster-container" class="hidden">
+                <h2 class="text-2xl font-bold text-center mb-4 text-gray-800">Tu Póster Generado</h2>
+                <div class="relative w-full max-w-xl mx-auto">
+                    <canvas id="poster-canvas" class="rounded-xl shadow-lg border border-gray-300"></canvas>
+                    <div class="absolute inset-0 flex items-center justify-center hidden" id="download-btn-wrapper">
+                        <button id="download-btn" class="bg-green-600 text-white font-bold py-3 px-6 rounded-full hover:bg-green-700 transition duration-300">
+                            Descargar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+/* Estilos adicionales para el spinner de carga */
+.loader {
+    border-top-color: #3b82f6; /* Color azul de Tailwind */
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ocultar el botón de descarga por defecto */
+#download-btn {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Mostrar el botón de descarga con un efecto de fade-in */
+#poster-container:hover #download-btn {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Estilo para que el canvas tenga un tamaño responsivo */
+#poster-canvas {
+    width: 100%;
+    height: auto;
+}
